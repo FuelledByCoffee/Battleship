@@ -252,4 +252,5 @@ bool Board::checkWin() {
 			}
 		}
 	}
-	return true;}
+	return true;
+}
