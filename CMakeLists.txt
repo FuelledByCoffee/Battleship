@@ -24,7 +24,7 @@ add_subdirectory(src)
 
 include(CTest)
 if(BUILD_TESTING)
-    add_subdirectory(tests)
+  add_subdirectory(tests)
 endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
