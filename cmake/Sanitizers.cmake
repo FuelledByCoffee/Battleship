@@ -8,7 +8,11 @@ function(enable_sanitizers target)
     set(SANITIZERS "")
 
     # UBSAN
-    option(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR "Enable undefined behavior sanitizer" TRUE)
+    option(
+      ENABLE_SANITIZER_UNDEFINED_BEHAVIOR
+      "Enable undefined behavior sanitizer"
+      TRUE
+    )
 
     if(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR)
       message(STATUS "${target}: Enabling undefined behavior sanitizer")
@@ -40,7 +44,10 @@ function(enable_sanitizers target)
         ${target}
         PRIVATE "$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>"
       )
-      target_link_options(${target} PRIVATE "$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>")
+      target_link_options(
+        ${target}
+        PUBLIC "$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>"
+      )
 
       if(WIN32)
         if(MSVC AND ${EXTRA_SANITIZER} STREQUAL "address")
@@ -48,7 +55,10 @@ function(enable_sanitizers target)
           add_compile_options("$<$<CONFIG:Sanitize>:/fsanitize=address>")
           add_link_options("$<$<CONFIG:Sanitize>:/fsanitize=address>")
         endif()
-        set_property(GLOBAL PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+        set_property(
+          GLOBAL
+          PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+        )
       endif()
     endif()
   endif()

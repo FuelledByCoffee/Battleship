@@ -4,3 +4,5 @@ set_target_properties(
     battleship
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
 )
+
+enable_sanitizers(battleship)
