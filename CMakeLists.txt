@@ -22,11 +22,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 add_subdirectory(lib)
 add_subdirectory(src)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
-
 include(CTest)
 if(BUILD_TESTING)
     add_subdirectory(tests)
 endif()
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
