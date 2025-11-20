@@ -11,8 +11,6 @@
 #include "board.h"
 #include <array>
 #include <cctype>
-#include <iostream>
-#include <string>
 
 // Constructor definition
 Board::Board() {

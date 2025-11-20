@@ -30,7 +30,6 @@ void vertPrint(int startY, int X, std::string input) {
 
 
 // Did not get used
-
 char wrongInput() {
 	char inp;
 	while (true) {
@@ -84,4 +83,5 @@ int intInput(std::string prompt, std::string failPrompt) {
 		int number = std::stoi(input); // removes whitespace and stores input in
 		                               // number
 		return number;
-	}}
+	}
+}
