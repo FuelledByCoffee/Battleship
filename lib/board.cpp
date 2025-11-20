@@ -14,11 +14,7 @@
 
 // Constructor definition
 Board::Board() {
-	for (auto& row : board) {
-		for (auto& space : row) {
-			space = '.';
-		}
-	}
+	for (auto& row : board) std::ranges::fill(row, '.');
 }
 
 // Function to display the board                // NOTE: This function could
