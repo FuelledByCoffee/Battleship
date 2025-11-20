@@ -14,9 +14,10 @@ target_include_directories(
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PRIVATE ${CURSES_INCLUDE_DIRS}
 )
+target_compile_options(battleship_game PRIVATE ${CURSES_FLAGS})
 target_link_libraries(
   battleship_game
-  PUBLIC ${CURSES_LIBRARIES} ${MENU_LIBRARY}
+  PRIVATE ${CURSES_LIBRARIES} ${MENU_LIBRARY}
 )
 
 enable_sanitizers(battleship_game)
