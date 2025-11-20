@@ -1,15 +1,13 @@
 /**
  * Project III: Start testing here.
  */
-#include <assert.h>
-#include <string>
 #include "game.h"
 #include "menu.h"
-#include "board.h"
-#include "player.h"
+#include <assert.h>
+#include <string>
 
 int main() {
-    Menu menu;
-    menu.StartGame("hehe");
-    menu.CloseProgram();
+	Menu menu;
+	menu.StartGame("hehe");
+	menu.CloseProgram();
 }
