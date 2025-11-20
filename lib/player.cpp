@@ -11,9 +11,9 @@
 #include "player.h"
 #include <string>
 
-Player::Player(std::string name) { //
+Player::Player(std::string &&name) { //
 	this->board = new Board();
-	this->name  = name;
+	this->name  = std::move(name);
 }
 
 Player::~Player() {
@@ -34,7 +34,7 @@ int Player::getMisses() {
 	return misses;
 }
 
-std::string_view Player::getName() const {
+auto Player::getName() const -> const std::string & {
 	return this->name;
 }
 

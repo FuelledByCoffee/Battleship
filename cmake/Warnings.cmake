@@ -2,7 +2,7 @@
 #
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 
-function(enable_warnings target)
+function(enable_warnings)
   # gersemi: off
   set(
     MSVC_WARNINGS
@@ -55,9 +55,10 @@ function(enable_warnings target)
 
   option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" FALSE)
   if(WARNINGS_AS_ERRORS)
-    set_target_properties(${target} PROPERTIES COMPILE_WARNING_AS_ERROR TRUE)
+    set_property(PROPERTIES COMPILE_WARNING_AS_ERROR TRUE)
   endif()
 
+  include(CheckCXXCompilerFlag)
   check_cxx_compiler_flag(-Weffc++ HAS_WEFFCXX_FLAG)
   if(HAS_WEFFCXX_FLAG)
     option(WARNING_EFFC++ "Enable warnings for effective c++" TRUE)
@@ -72,6 +73,6 @@ function(enable_warnings target)
     set(PROJECT_WARNINGS ${CLANG_WARNINGS})
   endif()
 
-  target_compile_options(${target} PRIVATE ${PROJECT_WARNINGS})
-  message(STATUS "${target}: Enabling warnings")
+  add_compile_options(${PROJECT_WARNINGS})
+  message(STATUS "Enabling warnings")
 endfunction()

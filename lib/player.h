@@ -2,19 +2,18 @@
 
 #include "board.h"
 #include <string>
-#include <string_view>
 
 class Player {
 public:
-	Player(std::string name);
+	Player(std::string&& name);
 	~Player();
 	void addHit();
 	void addMiss();
 	int  getHits();
 	int  getMisses();
 
-	std::string_view getName() const;
-	void             printSelfBoard();         // Print your board for yourself
+	auto getName() const -> const std::string&;
+	void printSelfBoard();                     // Print your board for yourself
 	void printOpponentBoard(Player& opponent); // Print your opponent's board
 	                                           // for yourself
 

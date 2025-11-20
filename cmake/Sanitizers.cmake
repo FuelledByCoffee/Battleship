@@ -1,4 +1,4 @@
-function(enable_sanitizers target)
+function(enable_sanitizers)
   if(
     CMAKE_CXX_COMPILER_ID STREQUAL "GNU"
     OR CMAKE_CXX_COMPILER_ID MATCHES ".*Clang"
@@ -15,7 +15,7 @@ function(enable_sanitizers target)
     )
 
     if(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR)
-      message(STATUS "${target}: Enabling undefined behavior sanitizer")
+      message(STATUS "Enabling undefined behavior sanitizer")
       list(APPEND SANITIZERS "undefined")
     endif()
 
@@ -32,7 +32,7 @@ function(enable_sanitizers target)
 
     if(EXTRA_SANITIZER AND NOT "${EXTRA_SANITIZER}" STREQUAL "none")
       list(APPEND SANITIZERS ${EXTRA_SANITIZER})
-      message(STATUS "${target}: Enabling ${EXTRA_SANITIZER} sanitizer")
+      message(STATUS "Enabling ${EXTRA_SANITIZER} sanitizer")
     endif()
 
     list(JOIN SANITIZERS "," LIST_OF_SANITIZERS)
@@ -40,14 +40,8 @@ function(enable_sanitizers target)
 
   if(LIST_OF_SANITIZERS)
     if(NOT "${LIST_OF_SANITIZERS}" STREQUAL "")
-      target_compile_options(
-        ${target}
-        PRIVATE "$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>"
-      )
-      target_link_options(
-        ${target}
-        PUBLIC "$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>"
-      )
+      add_compile_options("$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>")
+      add_link_options("$<$<CONFIG:DEBUG>:-fsanitize=${LIST_OF_SANITIZERS}>")
 
       if(WIN32)
         if(MSVC AND ${EXTRA_SANITIZER} STREQUAL "address")

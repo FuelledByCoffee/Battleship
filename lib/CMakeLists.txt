@@ -19,5 +19,3 @@ target_link_libraries(
   battleship_game
   PRIVATE ${CURSES_LIBRARIES} ${MENU_LIBRARY}
 )
-
-enable_sanitizers(battleship_game)

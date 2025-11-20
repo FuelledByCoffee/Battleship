@@ -17,15 +17,7 @@ Game::Game() {
 	*/
 }
 
-Game::~Game() {
-	/*
-	deletes all pointers to players
-	*/
-	for (int i = 0; i < players.size(); ++i) {
-		delete players.at(i);    // removes
-		players.at(i) = nullptr; // stops referencing
-	}
-}
+Game::~Game() {}
 
 void Game::playGame() {
 	/*
@@ -34,10 +26,10 @@ void Game::playGame() {
 	initPlayers(); // initializes players
 	bool roundTwo; // whether the user wants to play another round with the same
 	               // names _unimplemented_
-	int  playerTurn = 0; // starting player is player 1
-	int  oppTurn    = 1;
-	int  y;                           // attack row
-	int  x;                           // attack column
+	unsigned    playerTurn = 0; // starting player is player 1
+	unsigned    oppTurn    = 1;
+	unsigned    y;                    // attack row
+	unsigned    x;                    // attack column
 	std::string yVals = "abcdefghij"; // row input options
 	std::string xVals = "0123456789"; // column input options
 	Player*     currPlayer; // makes it easier to switch which player is being
@@ -55,8 +47,8 @@ void Game::playGame() {
 			clear();
 			// end in between screen
 
-			currPlayer = players.at(playerTurn);
-			oppPlayer  = players.at(oppTurn);
+			currPlayer = &players.at(playerTurn);
+			oppPlayer  = &players.at(oppTurn);
 
 			// Displays the boards
 			mvprintw(0, 2, "%s's turn", getName(playerTurn));
@@ -131,16 +123,17 @@ void Game::setBoards() {
 	for (int i = 0; i < 2; ++i) { // player 1 first the player 2
 		mvprintw(0, 0, "%s please set your ships in private", getName(i));
 		for (int size : shipSizes) { // goes through the list of ship sizes
-			players.at(i)->setShips(size);
+			players.at(i).setShips(size);
 		}
 		getch();
 		clear();
 	}
 }
 
-const char* Game::getName(int playerIndex) { // I did not want to type the below
-	                                         // function
-	return players.at(playerIndex)->getName().data();
+const char* Game::getName(unsigned playerIndex) { // I did not want to type the
+	                                              // below
+	                                              // function
+	return players.at(playerIndex).getName().c_str();
 }
 
 /*
@@ -156,6 +149,7 @@ bool Game::playAgain() { // currently not used
  * prints players names after
  */
 void Game::initPlayers() {
+	players.reserve(2);
 
 	for (int i = 0; i < 2; i++) {
 		char name[3000]; // please do not enter a 3000 char name
@@ -166,7 +160,7 @@ void Game::initPlayers() {
 		getstr(name); // gets the player andd puts it into the player vector
 		noecho();     // hides keypresses again
 
-		players.push_back(new Player(name));
+		players.emplace_back(name);
 	}
 	// clear(); // clears display
 	// mvprintw(0, 1, "Player 1 is %s", getName(0)); //prints player 1 and 2s

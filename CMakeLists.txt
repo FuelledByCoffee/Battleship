@@ -13,6 +13,8 @@ include(Coverage)
 include(BuildType)
 include(CheckLTO)
 set_default_buildtype()
+enable_warnings()
+enable_sanitizers()
 enable_coverage()
 
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
