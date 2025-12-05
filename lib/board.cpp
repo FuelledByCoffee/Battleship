@@ -12,6 +12,8 @@
 #include <array>
 #include <cctype>
 
+#include <algorithm>
+
 // Constructor definition
 Board::Board() {
 	for (auto& row : board) std::ranges::fill(row, '.');
