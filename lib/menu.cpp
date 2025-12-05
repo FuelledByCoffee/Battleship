@@ -8,10 +8,9 @@
 	#include <ncurses/cursesw.h>
 #endif
 
-#include "commands.h"
-#include "game.h"
-#include "menu.h"
-#include <iostream>
+#include "commands.hpp"
+#include "game.hpp"
+#include "menu.hpp"
 #include <string>
 
 

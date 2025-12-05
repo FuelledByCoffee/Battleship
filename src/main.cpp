@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "menu.h"
+#include "menu.hpp"
 
 // Will have a title screen, then will start a menu, and then have a quit
 // screen.

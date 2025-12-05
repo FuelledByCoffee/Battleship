@@ -1,8 +1,8 @@
 /**
  * Project III: Start testing here.
  */
-#include "game.h"
-#include "menu.h"
+#include "game.hpp"
+#include "menu.hpp"
 #include <assert.h>
 #include <string>
 

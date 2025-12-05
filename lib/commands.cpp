@@ -1,6 +1,9 @@
 /*
 input checkers
 */
+#include <algorithm>
+#include <cctype>
+#include <string_view>
 #ifdef __linux__
 	#include <cursesw.h>
 #endif
@@ -8,7 +11,7 @@ input checkers
 	#include <ncurses/cursesw.h>
 #endif
 
-#include "commands.h"
+#include "commands.hpp"
 #include <iostream>
 #include <limits>
 #include <string>
@@ -22,7 +25,7 @@ void colorOff(int id) { // same but off
 	attroff(COLOR_PAIR(id));
 }
 
-void vertPrint(int startY, int X, std::string input) {
+void vertPrint(int startY, int X, std::string_view input) {
 	for (int i = 0; i < input.size(); i++) {
 		mvprintw(i + startY, X, "%c", input.at(i));
 	}
@@ -60,28 +63,13 @@ char wrongInput() {
 	return inp;
 }
 
-int intInput(std::string prompt, std::string failPrompt) {
+int intInput(std::string_view prompt, std::string_view failPrompt) {
 	std::string input;
-	int         number;
-	bool        attempt = true;
-
-	std::cout << prompt;
-	std::getline(std::cin, input); // takes use input
-
-	// checks each character in the input to see if it is an int or not
-	for (int digit : input) {
-		if (!std::isdigit(digit)) {
-			attempt = false; // Found a non-digit character
-		}
-	}
-
-	if (attempt == false) {
+	while (true) {
+		std::cout << prompt;
+		std::getline(std::cin, input);
+		if (std::ranges::all_of(input, ::isdigit)) break;
 		std::cout << failPrompt << std::endl;
-		intInput(prompt, failPrompt);
-		return 0; // to deal with stupid error messages lol
-	} else {
-		int number = std::stoi(input); // removes whitespace and stores input in
-		                               // number
-		return number;
 	}
+	return std::stoi(input); // removes whitespace and stores input in number
 }

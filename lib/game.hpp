@@ -1,13 +1,11 @@
-/*
+#pragma once
 
-*/
-#include "player.h"
+#include "player.hpp"
 #include <vector>
 
 class Game {
 public:
-	Game();
-	~Game(); // removes player pointers
+	Game() = default;
 
 	void        playGame(); // starts gameloop : called externally
 	const char *getName(unsigned playerNumber);

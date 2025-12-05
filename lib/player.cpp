@@ -8,7 +8,7 @@
 	#include <ncurses/cursesw.h>
 #endif
 
-#include "player.h"
+#include "player.hpp"
 #include <string>
 
 Player::Player(std::string &&name) { //

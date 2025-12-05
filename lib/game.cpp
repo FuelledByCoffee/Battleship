@@ -5,19 +5,10 @@
 	#include <ncurses/cursesw.h>
 #endif
 
-#include "commands.h"
-#include "game.h"
+#include "commands.hpp"
+#include "game.hpp"
 #include <string>
 #include <vector>
-
-Game::Game() {
-	/*
-	Initiallizes a game
-	stretch: add boardsize parameter
-	*/
-}
-
-Game::~Game() {}
 
 void Game::playGame() {
 	/*

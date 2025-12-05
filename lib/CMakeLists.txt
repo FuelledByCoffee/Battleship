@@ -3,19 +3,19 @@ set(CURSES_NEED_WIDE TRUE)
 find_package(Curses REQUIRED)
 find_library(MENU_LIBRARY menu)
 
-add_library(battleship_game)
-add_library(battle::ship ALIAS battleship_game)
+add_library(battleship.game)
+add_library(battle::ship ALIAS battleship.game)
 
 file(GLOB sources *.cpp)
-target_sources(battleship_game PRIVATE ${sources})
+target_sources(battleship.game PRIVATE ${sources})
 
 target_include_directories(
-  battleship_game
+  battleship.game
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PRIVATE ${CURSES_INCLUDE_DIRS}
 )
-target_compile_options(battleship_game PRIVATE ${CURSES_FLAGS})
+target_compile_options(battleship.game PRIVATE ${CURSES_FLAGS})
 target_link_libraries(
-  battleship_game
+  battleship.game
   PRIVATE ${CURSES_LIBRARIES} ${MENU_LIBRARY}
 )

@@ -8,7 +8,7 @@
 	#include <ncurses/cursesw.h>
 #endif
 
-#include "board.h"
+#include "board.hpp"
 #include <array>
 #include <cctype>
 
