@@ -9,10 +9,10 @@
 #endif
 
 #include "board.hpp"
-#include <array>
-#include <cctype>
 
 #include <algorithm>
+#include <array>
+#include <cctype>
 
 // Constructor definition
 Board::Board() {

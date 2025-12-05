@@ -1,20 +1,20 @@
 /*
 input checkers
 */
-#include <algorithm>
-#include <cctype>
-#include <string_view>
-#ifdef __linux__
+#if defined __linux__
 	#include <cursesw.h>
-#endif
-#ifdef _WIN32
+#elif defined _WIN32
 	#include <ncurses/cursesw.h>
 #endif
 
 #include "commands.hpp"
+
+#include <algorithm>
+#include <cctype>
 #include <iostream>
 #include <limits>
 #include <string>
+#include <string_view>
 
 void colorOn(int id) { // basically a simpler way to turn on colours, less
 	                   // verbose

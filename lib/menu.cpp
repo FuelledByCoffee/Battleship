@@ -1,16 +1,16 @@
 /*
 
 */
-#ifdef __linux__
+#if defined __linux__
 	#include <cursesw.h>
-#endif
-#ifdef _WIN32
+#elif defined _WIN32
 	#include <ncurses/cursesw.h>
 #endif
 
 #include "commands.hpp"
 #include "game.hpp"
 #include "menu.hpp"
+
 #include <string>
 
 
